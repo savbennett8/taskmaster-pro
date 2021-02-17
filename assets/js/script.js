@@ -110,7 +110,7 @@ $(".list-group").on("click", "span", function() {
 });
 
 //when value of due date was changed
-$(".list-group").on("blue", "input[type='text']", function() {
+$(".list-group").on("blur", "input[type='text']", function() {
   //get current text
   var date = $(this)
   .val()

@@ -140,6 +140,30 @@ $(".list-group").on("blur", "input[type='text']", function() {
   $(this).replaceWith(taskSpan);
 });
 
+// tasks become sortable
+$(".card .list-group").sortable({
+  connectWith: $(".card .list-group"),
+  scroll: false,
+  tolerance: "pointer",
+  //creates a copy of the task so the original isn't accidentally changed
+  helper: "clone",
+  //activate & deactivate trigger for all connected lists once dragging starts & stops
+  activate: function(event) {
+    console.log("deactivate", this);
+  },
+  //over & out trigger when a dragged item enters or leaves a list
+  over: function(event) {
+    console.log("over", event.target);
+  },
+  out: function(event) {
+    console.log("out", event.target);
+  },
+  //triggers when contents of a list are changed (re-order, removed, or added)
+  update: function(event) {
+    console.log("update", this);
+  }
+});
+
 
 // modal was triggered
 $("#task-form-modal").on("show.bs.modal", function() {

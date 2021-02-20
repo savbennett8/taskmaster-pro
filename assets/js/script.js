@@ -159,13 +159,24 @@ $(".card .list-group").sortable({
   helper: "clone",
   //activate & deactivate trigger for all connected lists once dragging starts & stops
   activate: function(event) {
+    $(this).addClass("dropover");
+    $(".bottom-trash").addClass(".bottom-trash-drag");
+    console.log("activate", this);
+  },
+  deactivate: function(event) {
+    $(this).removeClass("dropover");
+    $(".bottom-trash").removeClass(".bottom-trash-drag");
     console.log("deactivate", this);
   },
   //over & out trigger when a dragged item enters or leaves a list
   over: function(event) {
+    $(event.target).addClass("dropover-active");
+    $(".bottom-trash").addClass(".bottom-trash-active");
     console.log("over", event.target);
   },
   out: function(event) {
+    $(event.target).removeClass("dropover-active");
+    $(".bottom-trash").removeClass(".bottom-trash-active");
     console.log("out", event.target);
   },
   //triggers when contents of a list are changed (re-order, removed, or added)
@@ -244,7 +255,7 @@ $("#task-form-modal").on("shown.bs.modal", function() {
 });
 
 // save button in modal was clicked
-$("#task-form-modal .btn-primary").click(function() {
+$("#task-form-modal .btn-save").click(function() {
   // get form values
   var taskText = $("#modalTaskDescription").val();
   var taskDate = $("#modalDueDate").val();
